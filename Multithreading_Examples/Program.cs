@@ -1,46 +1,31 @@
-﻿Queue<string?> requestQueue = new Queue<string?>();
-object queueLock = new object();
+﻿Console.WriteLine("Enter a command to run a multithreading primitive example (lock, monitor, mutex, semaphore, autoresetevent, manualresetevent) or 'exit' to quit:");
 
-// 2. Start the requests queue monitoring thread
-Thread monitoringThread = new Thread(MonitorQueue);
-monitoringThread.Start();
-
-// 1. Enqueue the requests
-Console.WriteLine("Server is running. Type any input to process or 'exit' to stop.");
-while (true)
+string? input = Console.ReadLine();
+if (input?.ToLower() == "exit")
 {
-    string? input = Console.ReadLine();
-    if (input?.ToLower() == "exit")
-    {
+    return;
+}
+switch (input)
+{
+    case "lock":
+        new Multithreading_Examples.Primitives.Lock();
         break;
-    }
-    lock (queueLock)
-    {
-        requestQueue.Enqueue(input);
-    }
-}
-
-void MonitorQueue()
-{
-    while (true)
-    {
-        if (requestQueue.Count > 0)
-        {
-            lock (queueLock)
-            {
-                string? input = requestQueue.Dequeue();
-                Thread processingThread = new Thread(() => ProcessInput(input));
-                processingThread.Start();
-            }
-        }
-        Thread.Sleep(100);
-    }
-}
-
-// 3. Processing the requests
-void ProcessInput(string? input)
-{
-    // Simulate processing time
-    Thread.Sleep(2000);
-    Console.WriteLine($"Processed input: {input}");
+    //case "monitor":
+    //    new Multithreading_Examples.Primitives.Monitor();
+    //    break;
+    //case "mutex":
+    //    new Multithreading_Examples.Primitives.MutexExample();
+    //    break;
+    //case "semaphore":
+    //    new Multithreading_Examples.Primitives.SemaphoreExample();
+    //    break;
+    //case "autoresetevent":
+    //    new Multithreading_Examples.Primitives.AutoResetEventExample();
+    //    break;
+    //case "manualresetevent":
+    //    new Multithreading_Examples.Primitives.ManualResetEventExample();
+    //    break;
+    default:
+        Console.WriteLine("Unknown command. Available commands: lock, monitor, mutex, semaphore, autoresetevent, manualresetevent");
+        break;
 }
