@@ -1,4 +1,5 @@
 ﻿Queue<string?> requestQueue = new Queue<string?>();
+object queueLock = new object();
 
 // 2. Start the requests queue monitoring thread
 Thread monitoringThread = new Thread(MonitorQueue);
@@ -13,8 +14,10 @@ while (true)
     {
         break;
     }
-
-    requestQueue.Enqueue(input);
+    lock (queueLock)
+    {
+        requestQueue.Enqueue(input);
+    }
 }
 
 void MonitorQueue()
@@ -23,9 +26,12 @@ void MonitorQueue()
     {
         if (requestQueue.Count > 0)
         {
-            string? input = requestQueue.Dequeue();
-            Thread processingThread = new Thread(() => ProcessInput(input));
-            processingThread.Start();
+            lock (queueLock)
+            {
+                string? input = requestQueue.Dequeue();
+                Thread processingThread = new Thread(() => ProcessInput(input));
+                processingThread.Start();
+            }
         }
         Thread.Sleep(100);
     }
