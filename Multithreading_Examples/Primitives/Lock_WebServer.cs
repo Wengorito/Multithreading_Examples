@@ -1,11 +1,11 @@
 ﻿namespace Multithreading_Examples.Primitives
 {
-    internal class Lock
+    internal class Lock_WebServer
     {
         private Queue<string?> requestQueue = new Queue<string?>();
         private object queueLock = new object();
 
-        public Lock()
+        internal Lock_WebServer()
         {
             // 2. Start the requests queue monitoring thread
             Thread monitoringThread = new Thread(MonitorQueue);
@@ -19,7 +19,7 @@
                 if (input?.ToLower() == "exit")
                 {
                     Console.WriteLine("Shutting down server...");
-                    return;
+                    break;
                 }
                 lock (queueLock)
                 {
@@ -34,6 +34,7 @@
             {
                 if (requestQueue.Count > 0)
                 {
+                    // Equivalent to Monitor.Enter(queueLock) try{ ... }finally{ Monitor.Exit(queueLock); }
                     lock (queueLock)
                     {
                         string? input = requestQueue.Dequeue();
