@@ -14,9 +14,9 @@ switch (input)
     case "2":
         new Multithreading_Examples.Primitives.Lock_WebServer();
         break;
-    //case "3":
-    //    new Multithreading_Examples.Primitives.MonitorTimeout_TicketsBooking();
-    //    break;
+    case "3":
+        new Multithreading_Examples.Primitives.MonitorTimeout_TicketsBooking();
+        break;
     //case "mutex":
     //    new Multithreading_Examples.Primitives.MutexExample();
     //    break;
