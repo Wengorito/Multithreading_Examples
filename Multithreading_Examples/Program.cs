@@ -30,9 +30,10 @@ while (true)
         case "4":
             new Multithreading_Examples.Primitives.Mutex_CounterWithReadWrite();
             break;
-        //case "semaphore":
-        //    new Multithreading_Examples.Primitives.SemaphoreExample();
-        //    break;
+        case "5":
+            var semaphoreExample = new Multithreading_Examples.Primitives.Semaphore_WebServer();
+            semaphoreExample.Run();
+            break;
         //case "autoresetevent":
         //    new Multithreading_Examples.Primitives.AutoResetEventExample();
         //    break;
