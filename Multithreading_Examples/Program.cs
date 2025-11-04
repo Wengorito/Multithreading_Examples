@@ -34,9 +34,9 @@ while (true)
             var semaphoreExample = new Multithreading_Examples.Primitives.Semaphore_WebServer();
             semaphoreExample.Run();
             break;
-        //case "autoresetevent":
-        //    new Multithreading_Examples.Primitives.AutoResetEventExample();
-        //    break;
+        case "6":
+            new Multithreading_Examples.Primitives.AutoResetEvent_ProducerConsumer();
+            break;
         //case "manualresetevent":
         //    new Multithreading_Examples.Primitives.ManualResetEventExample();
         //    break;
