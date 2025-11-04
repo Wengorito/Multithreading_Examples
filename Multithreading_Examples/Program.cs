@@ -3,7 +3,8 @@ Console.WriteLine("Enter the command number and press enter to run a multithread
 "1. simple 2-threaded counter (monitor)\n2. multi-threaded server simulation (lock)\n3. tickets booking system (monitor with timeout)\n" +
 "4. mutex\n5. semaphore\n6. autoresetevent with worker thread" +
 "\n7. manualresetevent with worker threads" +
-"\n8. AutoResetEvent simple consumer producer\n9. Consumer Producer with pause" +
+"\n8. simple consumer producer (AutoResetEvent)\n9. Consumer Producer with pause (Auto + Manual)" +
+"\n10. ProducerConsumer with quit (AutoResetEvent with CountDownEvent)" +
 "\nor 'exit' to quit:\n\n");
 
 while (true)
@@ -48,6 +49,9 @@ while (true)
             break;
         case "9":
             new Multithreading_Examples.Primitives.ResetEvent.ProducerConsumerDemos.ProducerConsumer_WithPause();
+            break;
+        case "10":
+            new Multithreading_Examples.Primitives.ResetEvent.ProducerConsumerDemos.ProducerConsumer_WithQuit();
             break;
         default:
             Console.WriteLine("Unknown command. Available commands: lock, monitor, mutex, semaphore, autoresetevent, manualresetevent");
