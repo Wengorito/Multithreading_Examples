@@ -1,7 +1,10 @@
 ﻿
-Console.WriteLine("Enter a command to run a multithreading primitive example:\n\n" +
+Console.WriteLine("Enter the command number and press enter to run a multithreading primitive example:\n\n" +
 "1. simple 2-threaded counter (monitor)\n2. multi-threaded server simulation (lock)\n3. tickets booking system (monitor with timeout)\n" +
-"4. mutex\n5. semaphore\n6. autoresetevent\n7. manualresetevent\nor 'exit' to quit:\n\n");
+"4. mutex\n5. semaphore\n6. autoresetevent with worker thread" +
+"\n7. manualresetevent with worker threads" +
+"\n8. AutoResetEvent simple consumer producer\n9. Consumer Producer with pause" +
+"\nor 'exit' to quit:\n\n");
 
 while (true)
 {
@@ -35,11 +38,17 @@ while (true)
             semaphoreExample.Run();
             break;
         case "6":
-            new Multithreading_Examples.Primitives.AutoResetEvent_ProducerConsumer();
+            new Multithreading_Examples.Primitives.ResetEvent.AutoResetEvent_WorkerThread();
             break;
-        //case "manualresetevent":
-        //    new Multithreading_Examples.Primitives.ManualResetEventExample();
-        //    break;
+        case "7":
+            new Multithreading_Examples.Primitives.ResetEvent.ManualResetEvent_WorkerThreads();
+            break;
+        case "8":
+            new Multithreading_Examples.Primitives.ResetEvent.ProducerConsumerDemos.ProducerConsumer_Simple();
+            break;
+        case "9":
+            new Multithreading_Examples.Primitives.ResetEvent.ProducerConsumerDemos.ProducerConsumer_WithPause();
+            break;
         default:
             Console.WriteLine("Unknown command. Available commands: lock, monitor, mutex, semaphore, autoresetevent, manualresetevent");
             break;

@@ -1,15 +1,15 @@
-﻿namespace Multithreading_Examples.Primitives;
+﻿namespace Multithreading_Examples.Primitives.ResetEvent;
 
-internal class AutoResetEvent_ProducerConsumer
+internal class AutoResetEvent_WorkerThread
 {
     ///////////////////////////////////////////////////////////////////////
     // Multiple Worker thread
     /////////////////////////////////////////////////////////////////////// 
 
     string? _userInput = null;
-    internal AutoResetEvent_ProducerConsumer()
+    internal AutoResetEvent_WorkerThread()
     {
-        using AutoResetEvent autoResetEvent = new AutoResetEvent(false);
+        using System.Threading.AutoResetEvent autoResetEvent = new System.Threading.AutoResetEvent(false);
 
         Console.WriteLine("Server is running. Type 'go' to proceed and  'exit' to stop.");
 
@@ -34,7 +34,7 @@ internal class AutoResetEvent_ProducerConsumer
         }
     }
 
-    void Worker(AutoResetEvent autoResetEvent)
+    void Worker(System.Threading.AutoResetEvent autoResetEvent)
     {
         while (true)
         {
